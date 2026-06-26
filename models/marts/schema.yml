@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension table. One row per customer_id."
+    columns:
+      - name: customer_id
+        description: "Unique identifier per order"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_sellers
+    description: "Seller dimension table. One row per seller."
+    columns:
+      - name: seller_id
+        description: "Unique identifier for each seller"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    description: "Product dimension table with English category names."
+    columns:
+      - name: product_id
+        description: "Unique identifier for each product"
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_orders
+    description: "Core fact table. One row per order with payment and review metrics."
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order"
+        tests:
+          - unique
+          - not_null
+      - name: total_payment_value
+        description: "Total amount paid for the order in BRL. 0 if no payment record exists."
+
+  - name: fct_order_items
+    description: "Order items fact table. One row per item per order."
+    columns:
+      - name: order_id
+        description: "Foreign key to fct_orders"
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key to dim_products"
+        tests:
+          - not_null
+
+  - name: olist_monthly_summary
+    description: "Monthly aggregated metrics. One row per month."
+    columns:
+      - name: order_month
+        description: "First day of each month"
+        tests:
+          - unique
+          - not_null
