@@ -65,7 +65,7 @@ Raw CSVs → DuckDB (raw schema) → dbt Staging Models → dbt Mart Models
 
 ## Lineage DAG
 
-![DAG](dag.png)
+<img width="2800" height="1234" alt="dbt-dag" src="https://github.com/user-attachments/assets/25bd5f16-e60d-48a3-9d1c-9f02ab8efefb" />
 
 ## How to Run
 
